@@ -1,0 +1,5 @@
+# Introduction {#sec-intro}
+
+[TODO: Introduce the research problem, motivation, and contributions. Cite related work from `references.bib` like this [@example2026key].]
+
+The remainder of this paper is organized as follows: @sec-method presents the methodology, and @sec-results reports experimental results.

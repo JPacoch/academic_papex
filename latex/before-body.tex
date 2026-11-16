@@ -1,0 +1,25 @@
+% ==============================================================================
+% Quarto Template Partial: Title Block, Abstract, and Keywords Hooks
+% Registered in `_quarto.yml` under `format: pdf: template-partials`.
+%
+% Journal class swaps:
+% - IEEEtran: replace the keywords block below with `\begin{IEEEkeywords}...\end{IEEEkeywords}`.
+% - elsarticle: wrap keywords in `\begin{keyword}...\end{keyword}` inside `frontmatter`.
+% ==============================================================================
+
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+\maketitle
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$if(keywords)$
+\par\vspace{0.5em}
+\noindent\textbf{Keywords:} \textit{$for(keywords)$$keywords$$sep$; $endfor$}
+\par\vspace{1.0em}
+$endif$
+$endif$

@@ -1,0 +1,26 @@
+# Methodology {#sec-method}
+
+## Mathematical Formulation {#sec-math}
+
+[TODO: Describe your model or formulation here. Reference numbered equations via @eq-model.]
+
+$$
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+$$ {#eq-model}
+
+## Algorithm {#sec-algo}
+
+[TODO: Summarize your algorithm and reference it via `\Cref{alg:main}`.]
+
+```{=latex}
+\begin{algorithm}[htbp]
+\caption{Placeholder Algorithm Title}
+\label{alg:main}
+\begin{algorithmic}[1]
+\Require Input data $\mathbf{X}$
+\Ensure Output $\hat{\mathbf{y}}$
+\State Compute intermediate result \Comment{$\mathcal{O}(n \log n)$}
+\State \Return $\hat{\mathbf{y}}$
+\end{algorithmic}
+\end{algorithm}
+```

@@ -1,0 +1,31 @@
+---
+title: "Your Paper Title Here"
+author:
+  - name: First Author
+    orcid: 0000-0000-0000-0000
+    email: first.author@example.org
+    affiliations:
+      - name: Your University or Institute
+        department: Department Name
+        city: City
+        country: Country
+date: last-modified
+abstract: |
+  [TODO: Write a concise 150–250 word abstract summarizing the problem,
+  methodology, key results, and main conclusions.]
+keywords:
+  - Keyword 1
+  - Keyword 2
+  - Keyword 3
+---
+
+{{< include chapters/01_introduction.qmd >}}
+
+{{< include chapters/02_methodology.qmd >}}
+
+{{< include chapters/03_results.qmd >}}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

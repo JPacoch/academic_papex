@@ -1,0 +1,77 @@
+% ==============================================================================
+% Custom LaTeX Preamble for Geoinformatics, CS, and Mathematics Manuscripts
+% Loaded via Quarto's `include-in-header` (after Quarto loads `hyperref`).
+% ==============================================================================
+
+% --- Mathematics & Bold Vectors / Matrices ------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% --- Publication-Grade Tables -------------------------------------------------
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+
+% --- Figures, Map Subfigures & Float Placement --------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\graphicspath{{./}{images/}{../images/}}
+
+% --- Spatial Units & Coordinates ----------------------------------------------
+\usepackage{siunitx}
+\sisetup{per-mode=symbol}
+\DeclareSIUnit\pixel{px}
+
+% --- Colors & Hyperlink Styling -----------------------------------------------
+% Load `hyperref` without options so it honors Quarto's `\PassOptionsToPackage`
+% and remains compatible with Quarto's later `\usepackage{bookmark}` + `\hypersetup`.
+\usepackage{xcolor}
+\definecolor{AcademicBlue}{HTML}{0B4F8A}
+\definecolor{AcademicTeal}{HTML}{0E6E6E}
+\usepackage{hyperref}
+\AtBeginDocument{%
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=AcademicBlue,
+    citecolor=AcademicBlue,
+    urlcolor=AcademicTeal
+  }%
+}
+
+% --- CS Algorithm Pseudocode (must load after float and hyperref) -------------
+% Using `algorithm` + `algpseudocode` (IEEE/ACM standard, compatible with subcaption).
+% To switch to `algorithm2e`, comment out the two lines below and uncomment:
+%   \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\algrenewcommand{\algorithmiccomment}[1]{\hfill$\triangleright$~\textit{#1}}
+
+% --- Smart Cross-References (must load after hyperref, amsthm, and algorithm) -
+\usepackage[capitalize,noabbrev]{cleveref}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+
+% --- Domain Math Macros (Geoinformatics, CS & Linear Algebra) -----------------
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\bigO}[1]{\mathcal{O}\!\left(#1\right)}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+
+% Note on Theorems/Proofs:
+% Quarto automatically generates `\newtheorem` definitions for native blocks
+% such as `::: {#thm-...}`, `::: {#lem-...}`, and `::: {#def-...}`.
+% Avoid redefining `theorem`, `lemma`, or `definition` here to prevent clashes.

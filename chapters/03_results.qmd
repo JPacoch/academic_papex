@@ -1,0 +1,12 @@
+# Results and Discussion {#sec-results}
+
+[TODO: Present your experimental setup, figures, and quantitative tables. Reference figures with @fig-sample and tables with @tbl-results.]
+
+![Placeholder figure caption. Replace `images/sample_dem.png` with your own figure.](images/sample_dem.png){#fig-sample width="80%"}
+
+| Method | Metric A | Metric B | Runtime (s) |
+|:-------------------------------|---------:|---------:|------------:|
+| Baseline | 0.00 | 0.00 | 0.0 |
+| **Proposed** | **0.00** | **0.00** | **0.0** |
+
+: Placeholder results table caption. {#tbl-results}

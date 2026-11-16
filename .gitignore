@@ -1,0 +1,51 @@
+# Build outputs & Quarto caches
+build/
+.quarto/
+*_files/
+*_cache/
+_freeze/
+**/*.quarto_ipynb
+*.egg-info/
+
+# Root-level LaTeX / PDF artifacts (if generated outside build/)
+/index.tex
+/index.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.loa
+*.lof
+*.log
+*.lol
+*.lot
+*.nav
+*.out
+*.ps
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# Python, packages & temporary files
+__pycache__/
+*.py[cod]
+.venv/
+*.deb
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+# OS / WSL2 artifacts
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
