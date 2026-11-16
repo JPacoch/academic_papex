@@ -11,7 +11,7 @@ author:
         country: Country
 date: last-modified
 abstract: |
-  [TODO: Write a concise 150–250 word abstract summarizing the problem,
+  [TODO: Write a concise 150-250 word abstract summarizing the problem,
   methodology, key results, and main conclusions.]
 keywords:
   - Keyword 1

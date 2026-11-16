@@ -20,7 +20,7 @@ help:
 	@echo "  make setup   Install Quarto, TinyTeX, LaTeX packages, and generate sample figures"
 	@echo "  make check   Validate figure paths, DPI (>=300), pixel width, and file sizes"
 	@echo "  make build   Run image checks and compile PDF + standalone .tex into $(BUILD_DIR)/"
-	@echo "  make watch   Live auto-recompile preview server (configured for WSL2)"
+	@echo "  make watch   Live auto-recompile preview server"
 	@echo "  make arxiv   Package .tex, .bib, and ONLY used images into $(ARXIV_ZIP)"
 	@echo "  make clean   Remove build artifacts and temporary LaTeX/Quarto caches"
 
@@ -50,7 +50,7 @@ watch:
 		echo "[ERROR] 'quarto' not found on PATH. Run 'make setup' first."; \
 		exit 1; \
 	}
-	@echo "Starting Quarto live preview (WSL2 mode) at http://127.0.0.1:$(PREVIEW_PORT)"
+	@echo "Starting Quarto live preview at http://127.0.0.1:$(PREVIEW_PORT)"
 	@echo "Watching $(ENTRY_QMD), chapters/*.qmd, latex/*.tex, references.bib, and _quarto.yml..."
 	@( \
 		last_state=""; \

@@ -45,7 +45,7 @@ __pycache__/
 *.swp
 *.swo
 
-# OS / WSL2 artifacts
+# OS artifacts
 .DS_Store
 Thumbs.db
 *:Zone.Identifier

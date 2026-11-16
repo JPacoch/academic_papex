@@ -5,22 +5,16 @@ project:
     - index.qmd
   resources:
     - images/**
-  # Quarto writes `keep-tex` into the project root when `output-dir` is set;
-  # move it cleanly into `build/` so standalone `quarto render` matches `make build`.
+  # Move keep-tex output into build/ after rendering
   post-render:
     - python3 scripts/check_images.py --move-tex
 
-# --- Bibliography & Citation Style --------------------------------------------
-# `citeproc` + `csl: ieee.csl` guarantees zero BibTeX/Biber pass errors and a
-# self-contained `.tex` output. To swap styles (ACM, Elsevier, Copernicus, etc.),
-# replace `csl:` with another CSL file, OR switch to native LaTeX citations:
-#   cite-method: natbib
-#   biblio-style: IEEEtran
+# Bibliography
 bibliography: references.bib
 csl: ieee.csl
 cite-method: citeproc
 
-# --- Unified Cross-Referencing ------------------------------------------------
+# Cross-referencing
 crossref:
   fig-title: "Fig."
   fig-prefix: "Fig."
@@ -32,11 +26,9 @@ crossref:
   lem-prefix: "Lemma"
   def-prefix: "Definition"
 
-# --- PDF & LaTeX Export Configuration -----------------------------------------
+# PDF output
 format:
   pdf:
-    # Standard single-column academic preprint class (swap to IEEEtran, acmart,
-    # elsarticle, or copernicus when preparing camera-ready submission).
     documentclass: scrartcl
     classoption:
       - paper=a4

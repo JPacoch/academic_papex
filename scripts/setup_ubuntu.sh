@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
-# ==============================================================================
-# Ubuntu 26.04 (WSL2) Idempotent Setup Script for Academic Paper Pipeline
-# Installs:
-#   - System packages: curl, wget, perl, xz-utils, fontconfig, poppler-utils,
-#                      python3, python3-pil, zip
-#   - Quarto CLI (latest Linux .deb for amd64 or arm64)
-#   - TinyTeX via Quarto + essential CS / Math / Geoinformatics LaTeX packages
-# ==============================================================================
+# Idempotent Ubuntu setup script for the academic paper pipeline.
+# Installs system packages, Quarto CLI, TinyTeX, and required LaTeX packages.
 
 set -euo pipefail
 
@@ -30,9 +24,6 @@ if [[ "$(id -u)" -ne 0 ]]; then
   fi
 fi
 
-# ------------------------------------------------------------------------------
-# 1. Detect Architecture & Environment
-# ------------------------------------------------------------------------------
 detect_arch() {
   local arch=""
   if command -v dpkg >/dev/null 2>&1; then
@@ -57,13 +48,7 @@ detect_arch() {
 ARCH="$(detect_arch)"
 log_info "Detected Linux architecture: $ARCH"
 
-if grep -qi microsoft /proc/version 2>/dev/null; then
-  log_info "WSL2 environment detected."
-fi
-
-# ------------------------------------------------------------------------------
-# 2. Install System Dependencies (Poppler, Python3 + Pillow, TinyTeX prereqs)
-# ------------------------------------------------------------------------------
+# System dependencies
 APT_PACKAGES=(
   curl
   wget
@@ -92,9 +77,7 @@ else
   log_ok "All required apt packages are already installed."
 fi
 
-# ------------------------------------------------------------------------------
-# 3. Install / Verify Quarto CLI
-# ------------------------------------------------------------------------------
+# Quarto CLI
 fetch_latest_quarto_version() {
   local ver=""
   ver="$(
@@ -152,9 +135,7 @@ else
   log_ok "Quarto $(quarto --version) installed."
 fi
 
-# ------------------------------------------------------------------------------
-# 4. Install TinyTeX via Quarto & Configure PATH
-# ------------------------------------------------------------------------------
+# TinyTeX
 locate_tinytex_bin() {
   local dir
   for dir in \
@@ -176,7 +157,7 @@ if TINYTEX_BIN="$(locate_tinytex_bin)"; then
 elif command -v pdflatex >/dev/null 2>&1 && command -v tlmgr >/dev/null 2>&1; then
   log_ok "System TeX distribution found ($(command -v pdflatex))."
 else
-  log_info "Installing TinyTeX via Quarto (lightweight TeX distribution)..."
+  log_info "Installing TinyTeX via Quarto..."
   if ! quarto install tinytex --no-prompt --update-path; then
     log_warn "Falling back to TinyTeX install without system symlink update..."
     quarto install tinytex --no-prompt
@@ -189,23 +170,19 @@ else
   fi
 fi
 
-# Ensure TinyTeX bin directory persists in ~/.bashrc for future WSL2 shells
 if [[ -n "${TINYTEX_BIN:-}" && -f "$HOME/.bashrc" ]]; then
   PATH_LINE="export PATH=\"${TINYTEX_BIN}:\$PATH\""
   if ! grep -Fq "$TINYTEX_BIN" "$HOME/.bashrc"; then
     {
       echo ""
-      echo "# Added by academic_papex setup_ubuntu.sh for TinyTeX"
+      echo "# Added by setup_ubuntu.sh for TinyTeX"
       echo "$PATH_LINE"
     } >> "$HOME/.bashrc"
     log_info "Appended TinyTeX bin directory to ~/.bashrc."
   fi
 fi
 
-# ------------------------------------------------------------------------------
-# 5. Install Essential LaTeX Packages for Math, CS, and Geoinformatics
-# ------------------------------------------------------------------------------
-# Map required `.sty` / binary resources to TeX Live package names.
+# LaTeX packages
 declare -A TEX_STY_TO_PKG=(
   ["amsmath.sty"]="amsmath"
   ["amssymb.sty"]="amsfonts"
@@ -279,9 +256,6 @@ else
   log_warn "tlmgr not found; skipping TeX Live package check."
 fi
 
-# ------------------------------------------------------------------------------
-# 6. Final Verification Summary
-# ------------------------------------------------------------------------------
 echo ""
 log_info "Environment verification:"
 printf '  - Quarto   : %s\n' "$(quarto --version 2>/dev/null || echo 'missing')"
